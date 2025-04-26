@@ -1,0 +1,29 @@
+---
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import { headers, SITE } from "@consts";
+---
+
+<header>
+  <Container>
+    <div class="flex flex-wrap gap-y-2 justify-between">
+      <Link href="/" underline={false}>
+        <div class="font-semibold text-lg tracking-widest">
+          {SITE.NAME}
+        </div>
+    </Link>
+      <nav class="flex gap-4">
+        {
+          headers.map(header => (
+            <Link
+            underline={false}
+              href={header.href}
+            >
+              {header.name}
+            </Link>
+          ))
+        }
+      </nav>
+    </div>
+  </Container>
+</header>
