@@ -44,14 +44,14 @@ export const SOCIALS: Socials = [
   {
     NAME: "twitch",
     HREF: "https://www.twitch.tv/atultv",
+  },
+  {
+    NAME: "youtube",
+    HREF: "https://www.youtube.com/@ap-atul",
   }
 ];
 
 export const headers = [
-  {
-    name: "home",
-    href: "/",
-  },
   {
     name: "blog",
     href: "/blog",

@@ -6,19 +6,16 @@ import { headers, SITE } from "@consts";
 
 <header>
   <Container>
-    <div class="flex flex-wrap gap-y-2 justify-between">
+    <div class="flex flex-wrap gap-y-2 items-center justify-between">
       <Link href="/" underline={false}>
-        <div class="font-semibold text-lg tracking-widest">
-          {SITE.NAME}
+        <div class="font-bold text-md tracking-widest">
+          <span>{SITE.NAME}</span>
         </div>
-    </Link>
+      </Link>
       <nav class="flex gap-4">
         {
-          headers.map(header => (
-            <Link
-            underline={false}
-              href={header.href}
-            >
+          headers.map((header) => (
+            <Link underline={false} href={header.href}>
               {header.name}
             </Link>
           ))

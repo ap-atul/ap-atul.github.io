@@ -2,7 +2,6 @@
 import BackToTop from "@components/BackToTop.astro";
 import Container from "@components/Container.astro";
 import { SITE, SOCIALS } from "@consts";
-import Link from "./Link.astro";
 ---
 
 <footer class="animate">
@@ -14,7 +13,9 @@ import Link from "./Link.astro";
     </div>
     <div class="flex justify-between items-center">
       <div>
-        &copy; {new Date().getFullYear()} {`|`} {SITE.NAME}
+        &copy; {new Date().getFullYear()}
+        {`|`}
+        {SITE.NAME}
       </div>
       <div class="flex flex-wrap gap-1 items-center">
         <button
@@ -91,20 +92,32 @@ import Link from "./Link.astro";
     </div>
 
     <div class="flex justify-between items-center text-sm">
-        <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
+      <ul class="flex flex-wrap gap-2 text-xs">
+        {
+          SOCIALS.map((SOCIAL) => (
             <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} underline={false} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
+              <a
+                class="hover:font-semibold"
+                href={SOCIAL.HREF}
+                target="_blank"
+                aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+              >
                 {SOCIAL.NAME}
-              </Link>
+              </a>
             </li>
-          ))}
-          <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} underline={false} aria-label={`Email ${SITE.NAME}`}>
-              email
-            </Link>
-          </li>
-        </ul>
+          ))
+        }
+        <li class="line-clamp-1">
+          <a
+            class="hover:font-semibold"
+            href={`mailto:${SITE.EMAIL}`}
+            target="_blank"
+            aria-label={`Email ${SITE.NAME}`}
+          >
+            email
+          </a>
+        </li>
+      </ul>
     </div>
   </Container>
 </footer>
