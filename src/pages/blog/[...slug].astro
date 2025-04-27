@@ -65,7 +65,7 @@ const { prev, next } = getAdjacentPosts(post.id, await getCollection("blog"));
       <div class="flex flex-wrap justify-center gap-2 mt-2 text-xs">
         {
           post.data.tags.map((tag) => (
-            <span class="px-2 py-1 text-xs w-max bg-muted rounded-full">
+            <span class="px-2 py-1 text-xs w-max bg-muted-background rounded-full">
               #{tag}
             </span>
           ))
