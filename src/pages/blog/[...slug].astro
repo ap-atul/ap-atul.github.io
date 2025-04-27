@@ -1,14 +1,26 @@
 ---
 import BackToPrev from "@components/BackToPrev.astro";
 import Container from "@components/Container.astro";
-import FormattedDate from "@components/FormattedDate.astro";
+import PostNavigation from "@components/PostNavigation.astro";
 import PageLayout from "@layouts/PageLayout.astro";
-import { readingTime } from "@lib/utils";
+import { formatDate, readingTime } from "@lib/utils";
 import { type CollectionEntry, getCollection } from "astro:content";
+
+const getAdjacentPosts = (
+  currentId: string,
+  postList: CollectionEntry<"blog">[]
+) => {
+  const index = postList.findIndex((post) => post.id === currentId);
+  return {
+    prev: index > 0 ? postList[index - 1] : null,
+    next:
+      index >= 0 && index < postList.length - 1 ? postList[index + 1] : null,
+  };
+};
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog"))
-    .filter(post => !post.data.draft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return posts.map((post) => ({
     params: { slug: post.slug },
@@ -19,30 +31,49 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
+const { prev, next } = getAdjacentPosts(post.id, await getCollection("blog"));
 ---
 
-<PageLayout title={post.data.title} description={post.data.description} keywords={post.data.keywords}>
+<PageLayout
+  title={post.data.title}
+  description={post.data.description}
+  keywords={post.data.keywords}
+>
   <Container>
     <div class="animate">
-      <BackToPrev href="/blog">
-        Back to blog
-      </BackToPrev>
+      <BackToPrev href="/blog"> back to blog </BackToPrev>
     </div>
-    <div class="space-y-1 my-10">
-      <div class="animate flex items-center gap-1.5">
-        <div class="font-base text-sm">
-          <FormattedDate date={post.data.date} />
-        </div>
-        &bull;
-        <div class="font-base text-sm">
-          {readingTime(post.body)}
-        </div>
-      </div>
+    <div class="text-center mx-16 mt-20 mb-10 animate">
       <div class="animate text-2xl font-semibold text-black dark:text-white">
         {post.data.title}
       </div>
+      <div
+        class="flex gap-2 items-center justify-center mt-3 text-xs text-muted-foreground"
+      >
+        <span>
+          <img
+            src="/logo.webp"
+            alt="atul"
+            class="inline-block w-6 h-6 rounded-full"
+          />
+          atul |
+        </span>
+        <span>{formatDate(post.data.date)}</span>
+        <span class="font-light">|</span>
+        <span>{readingTime(post.body)}</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-2 mt-2 text-xs">
+        {
+          post.data.tags.map((tag) => (
+            <span class="px-2 py-1 text-xs w-max bg-muted rounded-full">
+              #{tag}
+            </span>
+          ))
+        }
+      </div>
     </div>
-    <article class="animate">
+    <PostNavigation prevPost={prev} nextPost={next} />
+    <article class="animate mt-10">
       <Content />
     </article>
   </Container>

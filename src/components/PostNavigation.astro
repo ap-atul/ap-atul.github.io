@@ -1,0 +1,41 @@
+---
+const { prevPost, nextPost } = Astro.props;
+console.log(prevPost, nextPost);
+---
+
+<div class="col-start-2 flex flex-col gap-4 sm:flex-row">
+  {
+    prevPost && (
+      <a
+        class="grow border border-1 border-muted p-4 rounded-md"
+        href={prevPost ? `/blog/${prevPost.id}` : "#"}
+        aria-disabled={!prevPost}
+      >
+        <div class="flex flex-col items-start text-left text-wrap">
+          <span class="text-xs text-muted-foreground">Previous Post</span>
+          <span class="w-full text-ellipsis text-pretty text-sm">
+            {prevPost?.data.title || "Last post!"}
+          </span>
+        </div>
+        <div class="ml-2 flex-shrink-0" />
+      </a>
+    )
+  }
+  {
+    nextPost && (
+      <a
+        class="grow border border-1 border-muted-foreground p-4 rounded-md"
+        href={nextPost ? `/blog/${nextPost.id}` : "#"}
+        aria-disabled={!nextPost}
+      >
+        <div class="mr-2 flex-shrink-0" />
+        <div class="flex flex-col items-end text-right text-wrap">
+          <span class="text-xs text-muted-foreground">Next Post</span>
+          <span class="w-full text-ellipsis text-pretty text-sm">
+            {nextPost?.data.title || "Latest post!"}
+          </span>
+        </div>
+      </a>
+    )
+  }
+</div>

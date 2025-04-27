@@ -5,5 +5,5 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
   site: "https://ap-atul.github.io",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), sitemap(), tailwind(),],
 });
