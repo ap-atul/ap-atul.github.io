@@ -1,28 +1,38 @@
 ---
 import BlogCard from "@components/BlogCard.astro";
 import Container from "@components/Container.astro";
-import { BLOG } from "@consts";
+import Pagination from "@components/Pagination.astro";
+import { BLOG, SITE } from "@consts";
 import PageLayout from "@layouts/PageLayout.astro";
+import type { PaginateFunction } from "astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
-const data = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  return paginate(
+    allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    { pageSize: SITE.POSTS_PER_PAGE }
+  );
+}
 
-type Acc = {
-  [year: string]: CollectionEntry<"blog">[];
-};
+const { page } = Astro.props;
 
-const posts = data.reduce((acc: Acc, post) => {
-  const year = post.data.date.getFullYear().toString();
-  if (!acc[year]) {
-    acc[year] = [];
-  }
-  acc[year].push(post);
-  return acc;
-}, {});
+const postsByYear = page.data.reduce(
+  (acc: Record<string, CollectionEntry<"blog">[]>, post) => {
+    const year = post.data.date.getFullYear().toString();
+    (acc[year] ??= []).push(post);
+    return acc;
+  },
+  {}
+);
 
-const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
+const years = Object.keys(postsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a)
+);
 ---
 
 <PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
@@ -36,7 +46,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
               <div class="font-semibold text-black dark:text-white">{year}</div>
               <div>
                 <ul class="flex flex-col gap-4">
-                  {posts[year].map((post) => (
+                  {postsByYear[year].map((post) => (
                     <li>
                       <BlogCard entry={post} />
                     </li>
@@ -48,5 +58,10 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
         }
       </div>
     </div>
+    <Pagination
+      base="/blog"
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+    />
   </Container>
 </PageLayout>
