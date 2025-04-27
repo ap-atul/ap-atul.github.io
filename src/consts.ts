@@ -45,6 +45,10 @@ export const SOCIALS: Socials = [
 
 export const headers = [
   {
+    name: "home",
+    href: "/",
+  },
+  {
     name: "blog",
     href: "/blog",
   },
