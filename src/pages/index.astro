@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
-import Container from "@components/Container.astro";
-import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
+import Container from "@components/Container.astro";
 import Link from "@components/Link.astro";
+import { HOME, SITE, SOCIALS } from "@consts";
+import PageLayout from "@layouts/PageLayout.astro";
 import { dateRange } from "@lib/utils";
-import { SITE, HOME, SOCIALS } from "@consts";
+import { getCollection } from "astro:content";
 
 const blog = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -32,33 +32,20 @@ const work = await Promise.all(
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Nano <span class="text-xl">👋🏻</span> 
-    </h4>
+    <h1 class="animate font-semibold text-2xl text-black dark:text-white">
+      hi, i'm atul <span class="text-xl">👋🏻</span> 
+    </h1>
     <div class="space-y-16">
       <section>
         <article class="space-y-4">
           <p class="animate">
-            I am a minimal, seo friendly, accessible portfolio and blog for developers. 
-            I am an even more lightweight version of my popular theme
-            <Link href="https://github.com/markhorn-dev/astro-sphere" aria-label="Astro Sphere on Github" external>
-              Astro Sphere
-            </Link>.
-            I have a lighthouse scores of 100 across the board for performance, 
-            accesibility, best practices and SEO.
+            i am full-stack developer by profession. i love to create. i work on lot of stuff, like work at a company full-time, part-time open source builder and sometime as a freelancer.
           </p>
           <p class="animate">
-            I come packed with full type safety, a sitemap, an rss feed, markdown 
-            and mdx support (use components in your markdown) through astro integrations.
-            I am styled with tailwind and come preconfigured with light, dark and 
-            system/os theme preferences out of the box.
-          </p>
+            you could see what im working on my <Link href="https://github.com/ap-atul">github</Link>
+            </p>
           <p class="animate">
-            Visit
-            <Link href="https://github.com/markhorn-dev/astro-nano" aria-label="Astro Nano on Github" external>
-              Astro Nano on Github
-            </Link>
-            to fork the repository, read the docs or one-click deploy on Vercel or Netlify. 
+            <strong>why smallcase?</strong> <i>better to read and doesn't distract!</i>
           </p>
         </article>
       </section>
@@ -66,10 +53,10 @@ const work = await Promise.all(
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
-            Latest posts
+            latest posts
           </h5>
           <Link href="/blog">
-            See all posts
+            see all posts
           </Link>
         </div>
         <ul class="flex flex-col gap-4">
@@ -84,10 +71,10 @@ const work = await Promise.all(
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
-            Work Experience
+            work experience
           </h5>
           <Link href="/work">
-            See all work
+            see all work
           </Link>
         </div>
         <ul class="flex flex-col space-y-4">
@@ -113,10 +100,10 @@ const work = await Promise.all(
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
-            Recent projects
+            recent projects
           </h5>
           <Link href="/projects">
-            See all projects
+            see all projects
           </Link>
         </div>
         <ul class="flex flex-col gap-4">
@@ -130,11 +117,11 @@ const work = await Promise.all(
 
       <section class="animate space-y-4">
         <h5 class="font-semibold text-black dark:text-white">
-          Let's Connect
+          let's connect
         </h5>
         <article>
           <p>
-            If you want to get in touch with me about something or just to say hi,
+            if you want to get in touch with me about something or just to say hi,
             reach out on social media or send me an email.
           </p>
         </article>
@@ -144,7 +131,6 @@ const work = await Promise.all(
               <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
                 {SOCIAL.NAME}
               </Link>
-              {"/"}
             </li>
           ))}
           <li class="line-clamp-1">
