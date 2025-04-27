@@ -1,9 +1,9 @@
 ---
-title: "Astro Sphere"
-description: "Portfolio and blog build with astro."
+title: "Ranobe"
+description: "Free and open-source light novel reader for Android"
 date: "Mar 18 2024"
-demoURL: "https://astro-sphere-demo.vercel.app"
-repoURL: "https://github.com/markhorn-dev/astro-sphere"
+demoURL: "https://github.com/ranobe-org/ranobe"
+repoURL: "https://github.com/ranobe-org/ranobe"
 ---
 
 ![Astro Sphere Lighthouse Score](/astro-sphere.jpg)
