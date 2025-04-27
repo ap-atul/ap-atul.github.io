@@ -19,8 +19,8 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply bg-white dark:bg-black/80;
-  @apply text-black/50 dark:text-stone-300;
+  @apply bg-white dark:bg-black;
+  @apply text-black/50 dark:text-white;
 }
 
 p {
