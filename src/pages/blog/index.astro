@@ -1,9 +1,9 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
+import BlogCard from "@components/BlogCard.astro";
 import Container from "@components/Container.astro";
-import ArrowCard from "@components/ArrowCard.astro";
 import { BLOG } from "@consts";
+import PageLayout from "@layouts/PageLayout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 const data = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -42,7 +42,7 @@ const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
                 {
                   posts[year].map((post) => (
                     <li>
-                      <ArrowCard entry={post}/>
+                      <BlogCard entry={post}/>
                     </li>
                   ))
                 }

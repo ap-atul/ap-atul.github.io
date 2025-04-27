@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 0 0% 95%;
+
+    --primary-foreground: #000000;
+    --secondary-foreground: #121212;
+    --muted-foreground: 0 0% 50.9%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+
+    --primary-foreground: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted-foreground: 0 0% 63.9%;
+  }
+}
+
 html {
   overflow-y: scroll;
   color-scheme: light;

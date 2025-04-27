@@ -1,0 +1,36 @@
+---
+import { formatDate, readingTime } from "@lib/utils";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  entry: CollectionEntry<"blog">; 
+}
+const { entry } = Astro.props;
+---
+
+<a href={`/${entry.collection}/${entry.slug}`} class="relative group flex flex-nowrap py-4 px-4 pr-10 rounded-lg border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300 ease-in-out">
+  <div class="flex flex-col flex-1">
+    <div class="font-bold text-lg text-primary-foreground">
+      {entry.data.title}
+    </div>
+    <div class="mt-2 text-sm text-semibold text-muted-foreground">
+      {entry.data.description}
+    </div>
+    <div class="flex gap-2 items-center mt-2 text-xs text-muted-foreground">
+      <span>
+        <img src="logo.webp" alt="atul" class="inline-block w-6 h-6 rounded-full" />
+        atul |
+      </span>
+      <span>{formatDate(entry.data.date)}</span>
+      <span class="font-light">|</span>
+      <span>{readingTime(entry.body)}</span>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-1 text-xs">
+      {entry.data.tags.slice(0, 5).map((tag) => (
+        <span class="px-2 py-1 text-xs w-max bg-muted rounded-full">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>
