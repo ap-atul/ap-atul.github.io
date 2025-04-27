@@ -1,21 +1,22 @@
 ---
+import Footer from "@components/Footer.astro";
 import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
 import { SITE } from "@consts";
 
 type Props = {
   title: string;
   description: string;
+  keywords?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, keywords } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Head title={`${title} | ${SITE.NAME}`} description={description} />
+    <Head title={`${title} | ${SITE.NAME}`} description={description} keywords={keywords} />
   </head>
   <body>
     <Header />
