@@ -15,7 +15,7 @@ const nextUrl = currentPage < totalPages ? `${base}/${currentPage + 1}` : "#";
   <a
     class={cn(
       "px-2 py-1 rounded-md",
-      currentPage == 1 ? "text-muted" : "hover:bg-muted "
+      currentPage == 1 ? "text-muted" : "hover:bg-muted"
     )}
     href={prevUrl}>{"< previous"}</a
   >
@@ -23,7 +23,7 @@ const nextUrl = currentPage < totalPages ? `${base}/${currentPage + 1}` : "#";
   <a
     class={cn(
       "px-2 py-1 rounded-md",
-      currentPage == 1 ? "text-muted" : "hover:bg-muted "
+      currentPage == totalPages ? "text-muted" : "hover:bg-muted "
     )}
     href={nextUrl}>{"next >"}</a
   >
