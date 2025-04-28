@@ -4,6 +4,10 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://ap-atul.github.io",
-  integrations: [mdx(), sitemap(), tailwind(),],
+  site: "https://atulpatare.in",
+  prefetch: {
+    defaultStrategy: "viewport",
+    prefetchAll: true,
+  },
+  integrations: [mdx(), sitemap(), tailwind()],
 });
