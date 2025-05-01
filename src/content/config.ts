@@ -2,14 +2,16 @@ import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    keywords: z.string().default(""),
-    tags: z.array(z.string()).default([]),
-    draft: z.boolean().optional()
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      date: z.coerce.date(),
+      keywords: z.string().default(""),
+      tags: z.array(z.string()).default([]),
+      image: image().optional(),
+      draft: z.boolean().optional(),
+    }),
 });
 
 const work = defineCollection({
@@ -30,7 +32,7 @@ const projects = defineCollection({
     date: z.coerce.date(),
     draft: z.boolean().optional(),
     demoURL: z.string().optional(),
-    repoURL: z.string().optional()
+    repoURL: z.string().optional(),
   }),
 });
 

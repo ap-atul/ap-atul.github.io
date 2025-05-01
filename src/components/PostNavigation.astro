@@ -7,7 +7,11 @@ const { prevPost, nextPost } = Astro.props;
     prevPost && (
       <a
         class="grow border border-1 border-muted p-4 rounded-md"
-        href={prevPost ? `/blog/${prevPost.id}` : "#"}
+        href={
+          prevPost
+            ? `/blog/${prevPost.id.replace("index.md", "").replace(".md", "")}`
+            : "#"
+        }
         aria-disabled={!prevPost}
       >
         <div class="flex flex-col items-start text-left text-wrap">
@@ -23,8 +27,12 @@ const { prevPost, nextPost } = Astro.props;
   {
     nextPost && (
       <a
-        class="grow border border-1 border-muted-foreground p-4 rounded-md"
-        href={nextPost ? `/blog/${nextPost.id}` : "#"}
+        class="grow border border-1 border-muted p-4 rounded-md"
+        href={
+          nextPost
+            ? `/blog/${nextPost.id.replace("index.md", "").replace(".md", "")}`
+            : "#"
+        }
         aria-disabled={!nextPost}
       >
         <div class="mr-2 flex-shrink-0" />

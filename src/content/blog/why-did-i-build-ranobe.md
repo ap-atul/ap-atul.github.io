@@ -1,6 +1,6 @@
 ---
 title: "why did i build ranobe?"
-description: "ranobe is a free light novel reader app designed for android. it's open-source and free to use foreever."
+description: "ranobe is a free light novel reader app designed for android. it's open-source and free to use forever."
 date: "30 Apr 2025"
 keywords: "ranobe, light-novel reader, free light novel reader"
 tags: ["ranobe", "android", "tech"]
