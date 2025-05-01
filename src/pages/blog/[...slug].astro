@@ -37,6 +37,7 @@ const { prev, next } = getAdjacentPosts(post.id, await getCollection("blog"));
 <PageLayout
   title={post.data.title}
   description={post.data.description}
+  image={post.data.image?.src}
   keywords={post.data.keywords}
 >
   <Container>
