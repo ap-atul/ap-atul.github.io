@@ -26,21 +26,22 @@ export const WORK: Metadata = {
 
 export const PROJECTS: Metadata = {
   TITLE: "Projects",
-  DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
+  DESCRIPTION:
+    "A collection of my projects, with links to repositories and demos.",
 };
 
 export const SOCIALS: Socials = [
-  { 
+  {
     NAME: "twitter",
     HREF: "https://x.com/atul_patare",
   },
-  { 
-    NAME: "github",
-    HREF: "https://github.com/ap-atul"
+  {
+    NAME: "discord",
+    HREF: "https://discord.gg/VjevkBMt",
   },
-  { 
-    NAME: "linkedin",
-    HREF: "https://www.linkedin.com/in/atul-patare-a768a3165",
+  {
+    NAME: "github",
+    HREF: "https://github.com/ap-atul",
   },
   {
     NAME: "twitch",
@@ -49,7 +50,11 @@ export const SOCIALS: Socials = [
   {
     NAME: "youtube",
     HREF: "https://www.youtube.com/@ap-atul",
-  }
+  },
+  {
+    NAME: "linkedin",
+    HREF: "https://www.linkedin.com/in/atul-patare-a768a3165",
+  },
 ];
 
 export const headers = [
