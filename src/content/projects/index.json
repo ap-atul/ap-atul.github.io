@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "betweight",
+    "title": "BetWeight",
+    "description": "BetWeight motivates you to lose weight by allowing you to place a bet on your weight-loss goals.",
+    "draft": false,
+    "icon": "./assets/betweight.png",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://betweight.in"
+      },
+      {
+        "title": "twitter",
+        "url": "https://x.com/betweightindia"
+      },
+      {
+        "title": "instagram",
+        "url": "https://www.instagram.com/betweightindia"
+      }
+    ]
+  },
+  {
+    "slug": "music-player-lite",
+    "title": "Music Player Lite",
+    "description": "A elegant and light weight music player for Android",
+    "draft": false,
+    "icon": "./assets/mpl.png",
+    "links": [
+      {
+        "title": "github",
+        "url": "https://github.com/ap-atul/music_player_lite"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=com.atul.musicplayer"
+      }
+    ]
+  },
+  {
+    "slug": "ranobe",
+    "title": "Ranobe",
+    "description": "A light novel reader for Android",
+    "draft": false,
+    "icon": "./assets/ranobe.png",
+    "links": [
+      {
+        "title": "github",
+        "url": "https://github.com/ranobe-org/ranobe"
+      },
+      {
+        "title": "discord",
+        "url": "https://discord.gg/6CQ6u64dca"
+      }
+    ]
+  },
+  {
+    "slug": "ranobe-downloader",
+    "title": "Ranove Downloader",
+    "description": "A light novel downloader for Android",
+    "draft": false,
+    "icon": "./assets/ranobe.png",
+    "links": [
+      {
+        "title": "github",
+        "url": "https://google.com"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=org.ranobe.downloader"
+      }
+    ]
+  }
+]

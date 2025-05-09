@@ -1,13 +1,13 @@
 ---
-import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
-import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
 import { PROJECTS } from "@consts";
+import PageLayout from "@layouts/PageLayout.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const collection = await getCollection("projects");
+const projects = collection.map((c) => c.data);
 ---
 
 <PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
@@ -19,8 +19,26 @@ const projects = (await getCollection("projects"))
       <ul class="animate flex flex-col gap-4">
         {
           projects.map((project) => (
-            <li>
-              <ArrowCard entry={project}/>
+            <li class="animate border border-muted rounded-md p-4 flex gap-4 items-center">
+              <Image
+                class="rounded-md"
+                width={80}
+                height={80}
+                format="webp"
+                src={project.icon}
+                alt={project.title}
+              />
+              <div>
+                <h3 class="font-semibold text-primary-foreground">{project.title}</h3>
+                <p class="text-muted-foreground">{project.description}</p>
+                <div class="flex gap-2 mt-2">
+                  {project.links.map((link) => (
+                    <Link href={link.url} external underline>
+                      {link.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </li>
           ))
         }
