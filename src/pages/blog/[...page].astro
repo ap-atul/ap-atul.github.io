@@ -43,7 +43,9 @@ const years = Object.keys(postsByYear).sort(
         {
           years.map((year) => (
             <section class="animate space-y-4">
-              <div class="text-sm font-semibold text-black dark:text-white">{year}</div>
+              <div class="text-sm font-semibold text-black dark:text-white">
+                {year}
+              </div>
               <div>
                 <ul class="flex flex-col gap-4">
                   {postsByYear[year].map((post) => (

@@ -6,32 +6,39 @@ import PageLayout from "@layouts/PageLayout.astro";
 import { formatDate, readingTime } from "@lib/utils";
 import { type CollectionEntry, getCollection } from "astro:content";
 
-const getAdjacentPosts = (
-  currentId: string,
-  postList: CollectionEntry<"blog">[]
-) => {
-  const index = postList.findIndex((post) => post.id === currentId);
-  return {
-    prev: index > 0 ? postList[index - 1] : null,
-    next:
-      index >= 0 && index < postList.length - 1 ? postList[index + 1] : null,
-  };
-};
-
 export async function getStaticPaths() {
+  const getAdjacentPosts = (
+    currentId: string,
+    postList: CollectionEntry<"blog">[]
+  ) => {
+    const index = postList.findIndex((post) => post.id === currentId);
+    return {
+      prev: index > 0 ? postList[index - 1] : null,
+      next:
+        index >= 0 && index < postList.length - 1 ? postList[index + 1] : null,
+    };
+  };
+
   const posts = (await getCollection("blog"))
     .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: post,
-  }));
+  return posts.map((post) => {
+    const { prev, next } = getAdjacentPosts(post.id, posts);
+    return {
+      params: { slug: post.slug },
+      props: { post, prev, next },
+    };
+  });
 }
-type Props = CollectionEntry<"blog">;
 
-const post = Astro.props;
+interface Props {
+  post: CollectionEntry<"blog">;
+  prev: CollectionEntry<"blog"> | null;
+  next: CollectionEntry<"blog"> | null;
+}
+
+const { post, next, prev } = Astro.props;
 const { Content } = await post.render();
-const { prev, next } = getAdjacentPosts(post.id, await getCollection("blog"));
 ---
 
 <PageLayout

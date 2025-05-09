@@ -16,7 +16,7 @@ There's a very big audience for light novels on the internet, several sites list
 
 There were lot of open source apps on github which were free and was used by a whole lot of people. One of the famous one was `tachiyomi`, which had tons of contributors writting hundreds lines of kotlin code.
 
-I wanted to build something similar hoping to get people to use it and have dev to contribute to. I didn't knew Kotlin so I went with Java. I started with manga reader app, named it mangatain(_manga_ + enter*tain*). It built out to be a good app, some people used it. 
+I wanted to build something similar hoping to get people to use it and have dev to contribute to. I didn't knew Kotlin so I went with Java. I started with manga reader app, named it mangatain(_manga_ + enter*tain*). It built out to be a good app, some people used it.
 
 See, pages in manga are actually images, so I needed my app to support image manipulation and cropping; that kind of thing, but I didn't knew how to do that effectively. Hence, I dropped the project.
 
