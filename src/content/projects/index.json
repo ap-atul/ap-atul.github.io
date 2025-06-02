@@ -1,5 +1,23 @@
 [
   {
+    "slug": "betalists",
+    "title": "Betalists",
+    "description": "Launch ideas, not just products. Get user exposure and feedback before you build.",
+    "draft": false,
+    "icon": "./assets/betalists.png",
+    "date": "2025-06-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://betalists.xyz"
+      },
+      {
+        "title": "twitter",
+        "url": "https://x.com/betalistsxyz"
+      }
+    ]
+  },
+  {
     "slug": "betweight",
     "title": "BetWeight",
     "description": "BetWeight motivates you to lose weight by allowing you to place a bet on your weight-loss goals.",
