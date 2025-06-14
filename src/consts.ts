@@ -55,6 +55,10 @@ export const SOCIALS: Socials = [
     NAME: "linkedin",
     HREF: "https://www.linkedin.com/in/atul-patare-a768a3165",
   },
+  {
+    NAME: "medium",
+    HREF: "https://medium.com/@atulpatare",
+  },
 ];
 
 export const headers = [

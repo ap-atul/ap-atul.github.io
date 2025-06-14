@@ -97,52 +97,5 @@ const { Content } = await post.render();
     <article class="animate mt-10">
       <Content />
     </article>
-    <div class="flex mt-10 mb-20">
-      <button
-        id="like-button"
-        class="w-fit text-xs flex pl-2 pr-2 items-center gap-1 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
-        ><strong class="text-xl">❤</strong>like</button
-      >
-    </div>
   </Container>
 </PageLayout>
-
-<script is:inline type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import {
-    doc,
-    getFirestore,
-    setDoc,
-  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-lite.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCLlAoQUNsFRZb2hmyfCo3Ijtn0HKPcS_w",
-    authDomain: "atulpatare-39cfa.firebaseapp.com",
-    projectId: "atulpatare-39cfa",
-    storageBucket: "atulpatare-39cfa.firebasestorage.app",
-    messagingSenderId: "270211196082",
-    appId: "1:270211196082:web:5558e3035ccc83da49d5ab",
-  };
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const likeButton = document.getElementById("like-button");
-  likeButton.addEventListener("click", likePost);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function likePost() {
-    const likeButton = document.getElementById("like-button");
-    likeButton.innerHTML = `<strong class="text-xl">❤</strong>thanks`;
-
-    const page = window.location.pathname.split("/").pop();
-
-    const payload = {
-      createdAt: new Date(),
-      referer: document.referrer,
-      page,
-      path: window.location.pathname,
-    };
-    setDoc(doc(db, "likes", page), payload);
-  }
-</script>
