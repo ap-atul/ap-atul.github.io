@@ -1,5 +1,23 @@
 [
   {
+    "slug": "ranobem",
+    "title": "RanobeM - Manga reader & downloader",
+    "description": "Read and download manga from popular sources right to your Android device.",
+    "draft": false,
+    "icon": "./assets/ranobem.png",
+    "date": "2025-06-24",
+    "links": [
+      {
+        "title": "privacy policy",
+        "url": "https://atulpatare.in/ranobem/PRIVACY_POLICY.md"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.ranobem"
+      }
+    ]
+  },
+  {
     "slug": "betalists",
     "title": "Betalists",
     "description": "Launch ideas, not just products. Get user exposure and feedback before you build.",
