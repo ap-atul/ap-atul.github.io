@@ -2,7 +2,6 @@
   "name": "atul-portfolio",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "npm@10.8.1",
   "scripts": {
     "dev": "astro dev",
     "dev:network": "astro dev --host",
@@ -29,7 +28,6 @@
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^0.32.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "firebase-tools": "^14.2.1",
     "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.33.3",
     "tailwind-merge": "^2.2.2",
