@@ -18,46 +18,6 @@
     ]
   },
   {
-    "slug": "betalists",
-    "title": "Betalists",
-    "description": "Launch ideas, not just products. Get user exposure and feedback before you build.",
-    "draft": false,
-    "icon": "./assets/betalists.png",
-    "date": "2025-06-01",
-    "links": [
-      {
-        "title": "website",
-        "url": "https://betalists.xyz"
-      },
-      {
-        "title": "twitter",
-        "url": "https://x.com/betalistsxyz"
-      }
-    ]
-  },
-  {
-    "slug": "betweight",
-    "title": "BetWeight",
-    "description": "BetWeight motivates you to lose weight by allowing you to place a bet on your weight-loss goals.",
-    "draft": false,
-    "icon": "./assets/betweight.png",
-    "date": "2025-01-01",
-    "links": [
-      {
-        "title": "website",
-        "url": "https://betweight.in"
-      },
-      {
-        "title": "twitter",
-        "url": "https://x.com/betweightindia"
-      },
-      {
-        "title": "instagram",
-        "url": "https://www.instagram.com/betweightindia"
-      }
-    ]
-  },
-  {
     "slug": "music-player-lite",
     "title": "Music Player Lite",
     "date": "2023-01-01",
@@ -90,17 +50,7 @@
       {
         "title": "discord",
         "url": "https://discord.gg/6CQ6u64dca"
-      }
-    ]
-  },
-  {
-    "slug": "ranobe-downloader",
-    "title": "Ranove Downloader",
-    "date": "2024-01-01",
-    "description": "A light novel downloader for Android",
-    "draft": false,
-    "icon": "./assets/ranobe.png",
-    "links": [
+      },
       {
         "title": "play-store",
         "url": "https://play.google.com/store/apps/details?id=org.ranobe.downloader"
