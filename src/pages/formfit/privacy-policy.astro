@@ -1,0 +1,98 @@
+---
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+
+const UPDATED = "13 November 2026";
+const EMAIL = "atulpatare99@gmail.com";
+---
+
+<PageLayout
+  title="FormFit Privacy Policy"
+  description="Privacy policy for FormFit, the offline photo and signature resizer. FormFit collects no data."
+>
+  <Container>
+    <div class="animate text-center mt-10 mb-10">
+      <div class="text-4xl font-semibold text-black dark:text-white">
+        FormFit Privacy Policy
+      </div>
+      <div class="mt-3 text-xs text-muted-foreground">Last updated: {UPDATED}</div>
+    </div>
+
+    <article class="animate">
+      <p>
+        FormFit ("the app"), developed by <strong>Atul Patare</strong>, is a photo and signature
+        resizer, compressor and converter for exam and government forms. This policy explains how
+        the app handles your information. In short: <strong>it doesn't collect any.</strong>
+      </p>
+
+      <h2>Summary</h2>
+      <ul>
+        <li>
+          <strong>No data collection.</strong> FormFit does not collect, store on any server,
+          transmit, share or sell any personal information, images or usage data.
+        </li>
+        <li>
+          <strong>Fully offline.</strong> The app does not request the Internet permission, so it
+          cannot send anything off your device.
+        </li>
+        <li>
+          <strong>No ads, no analytics, no crash reporting, no tracking, no third-party SDKs, no
+          account or login.</strong>
+        </li>
+      </ul>
+
+      <h2>Images you select</h2>
+      <p>
+        Images you choose through the system photo picker, the file picker, or the Android "Share"
+        menu are read only to resize, compress or convert them <strong>on your device</strong>. The
+        app never uploads them.
+      </p>
+      <ul>
+        <li>
+          Temporary output files are kept in the app's private cache and deleted when you clear
+          results or start a new batch.
+        </li>
+        <li>Files you choose to <strong>Save</strong> are written to <code>Pictures/FormFit</code> on your device.</li>
+        <li>
+          Files you choose to <strong>Share</strong> are handed to the app you pick, under that
+          app's own privacy policy.
+        </li>
+      </ul>
+
+      <h2>Permissions</h2>
+      <ul>
+        <li>
+          <strong>Photo picker / file picker:</strong> gives the app access only to the images you
+          choose, never your whole gallery.
+        </li>
+        <li>
+          <strong>Storage (Android 8 and 9 only):</strong> needed to save output to your Pictures
+          folder on older Android versions. It is not requested on Android 10 and above.
+        </li>
+      </ul>
+
+      <h2>Settings</h2>
+      <p>
+        Your last used size settings and language are stored locally on your device so they are
+        remembered next time. They are never sent anywhere and are removed when you uninstall the
+        app or clear its data.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        The app does not collect any information from anyone, including children under 13.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If this policy changes, the updated version will be published at this same address with a
+        new "Last updated" date.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions or concerns about this policy: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </p>
+    </article>
+  </Container>
+</PageLayout>
