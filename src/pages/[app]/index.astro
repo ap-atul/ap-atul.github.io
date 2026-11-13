@@ -1,0 +1,458 @@
+---
+import { Image } from "astro:assets";
+import { landings, type Landing } from "../../lib/landings";
+
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/plus-jakarta-sans/400.css";
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/800.css";
+import "@fontsource/bricolage-grotesque/400.css";
+import "@fontsource/bricolage-grotesque/600.css";
+import "@fontsource/bricolage-grotesque/800.css";
+import "@fontsource/fraunces/600.css";
+import "@fontsource/fraunces/600-italic.css";
+import "@fontsource/lora/400.css";
+
+import sigBefore from "../../assets/apps/formfit/sig_before.jpg";
+import sigAfter from "../../assets/apps/formfit/sig_after.jpg";
+
+export function getStaticPaths() {
+  return landings.map((app) => ({ params: { app: app.slug }, props: { app } }));
+}
+
+const { app } = Astro.props as { app: Landing };
+const privacyUrl = `/${app.slug}/privacy-policy`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const title = `${app.name}: ${app.tagline}`;
+const [front, back] = (app.heroShots ?? [0, 1]).map((i) => app.shots[i]);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={app.metaDescription} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={app.icon.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={app.metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(app.icon.src, Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body class={`t-${app.theme}`}>
+    <div class="bg-motif" aria-hidden="true"></div>
+
+    <header class="nav wrap">
+      <a class="brand" href={`/${app.slug}`}>
+        <Image src={app.icon} alt="" width={36} height={36} class="brand-icon" />
+        <span>{app.name}</span>
+      </a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href={privacyUrl}>Privacy</a>
+        <a class="btn btn-sm" href={app.playUrl} rel="noopener">Get the app</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Free on Android</p>
+          <h1>{app.tagline}</h1>
+          <p class="lede">{app.lede}</p>
+          <div class="ctas">
+            <a class="btn btn-play" href={app.playUrl} rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
+                ><path d="M5 3.5v17a1 1 0 0 0 1.5.86l14.5-8.5a1 1 0 0 0 0-1.72L6.5 2.64A1 1 0 0 0 5 3.5Z" fill="currentColor"
+                ></path></svg
+              >
+              <span><small>Get it on</small>Google Play</span>
+            </a>
+            {
+              app.extraLinks?.map((l) => (
+                <a class="btn btn-ghost" href={l.url} rel="noopener">
+                  {l.title}
+                </a>
+              ))
+            }
+          </div>
+          <ul class="badges">{app.badges.map((b) => <li>{b}</li>)}</ul>
+        </div>
+
+        <div class="hero-art">
+          {
+            app.theme === "squeeze" && (
+              <div class="meter card">
+                <div class="meter-head">
+                  <span>VID_20261109_181244.mp4</span>
+                  <strong class="saving">−61%</strong>
+                </div>
+                <div class="bar-row">
+                  <span>Before</span>
+                  <div class="bar"><i style="width:100%" /></div>
+                  <b>388 MB</b>
+                </div>
+                <div class="bar-row">
+                  <span>After</span>
+                  <div class="bar after"><i style="width:39%" /></div>
+                  <b>151 MB</b>
+                </div>
+                <p class="meter-foot">✓ Saved 237 MB · copy saved in Movies/Squeeze</p>
+              </div>
+            )
+          }
+          {
+            app.theme === "formfit" && (
+              <div class="form-mock card">
+                <p class="form-title">Step 3 of 5 · Upload documents</p>
+                <label>Candidate photograph</label>
+                <div class="field bad">
+                  <span>IMG_4021.jpg · 3.4 MB</span>
+                  <em>✕ Image size must be between 20 KB and 50 KB</em>
+                </div>
+                <div class="arrow">↓ FormFit · SSC preset</div>
+                <div class="field good">
+                  <span>photo_ssc.jpg · 38 KB · 200 × 230 px</span>
+                  <em>✓ Uploaded</em>
+                </div>
+              </div>
+            )
+          }
+          {
+            (app.theme === "mangad" || app.theme === "ranobe") && (
+              <div class="poster-stack">
+                <Image src={back.src} alt={back.alt} widths={[280, 560]} sizes="280px" class="p-back" />
+                <Image
+                  src={front.src}
+                  alt={front.alt}
+                  widths={[320, 640]}
+                  sizes="320px"
+                  class="p-front"
+                  loading="eager"
+                />
+                {app.theme === "mangad" && <span class="bubble">New chapter!</span>}
+              </div>
+            )
+          }
+        </div>
+      </section>
+
+      {
+        app.steps && (
+          <section class="steps wrap">
+            {app.steps.map((s, i) => (
+              <div class="step">
+                <span class="step-n">{i + 1}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+        )
+      }
+
+      <section id="features" class="wrap">
+        <h2 class="section-title">Everything you need, nothing you don't</h2>
+        <div class="features">
+          {
+            app.features.map((f) => (
+              <article class="feature card">
+                <span class="f-icon" aria-hidden="true">
+                  {f.icon}
+                </span>
+                <h3>{f.title}</h3>
+                <p>{f.body}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      {
+        app.theme === "formfit" && (
+          <section class="wrap sig">
+            <div>
+              <h2 class="section-title">From a phone photo to a clean signature</h2>
+              <p>
+                Sign on any paper, take a photo, and FormFit turns it into dark ink on white, cropped and sized
+                for the form.
+              </p>
+            </div>
+            <div class="sig-pair">
+              <figure>
+                <Image src={sigBefore} alt="Signature photographed on grey paper" widths={[400, 800]} sizes="(max-width: 700px) 45vw, 300px" />
+                <figcaption>Before · 2000×1000</figcaption>
+              </figure>
+              <span class="sig-arrow">→</span>
+              <figure>
+                <Image src={sigAfter} alt="Cleaned signature, dark ink on white" />
+                <figcaption>After · 400×200</figcaption>
+              </figure>
+            </div>
+          </section>
+        )
+      }
+
+      <section class="wrap">
+        <h2 class="section-title">Take a look</h2>
+      </section>
+      <div class={`shots shots-${app.shotStyle}`}>
+        {
+          app.shots.map((s) => (
+            <figure class="shot">
+              <div class="frame">
+                <Image src={s.src} alt={s.alt} widths={[260, 520]} sizes="260px" />
+              </div>
+              {s.caption && <figcaption>{s.caption}</figcaption>}
+            </figure>
+          ))
+        }
+      </div>
+
+      <section class="wrap faq">
+        <h2 class="section-title">Questions</h2>
+        {
+          app.faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </section>
+
+      <section class="wrap">
+        <div class="cta card">
+          <Image src={app.icon} alt="" width={72} height={72} class="cta-icon" />
+          <h2>Try {app.name} today</h2>
+          <p>Free on Google Play.</p>
+          <a class="btn btn-play" href={app.playUrl} rel="noopener">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
+              ><path d="M5 3.5v17a1 1 0 0 0 1.5.86l14.5-8.5a1 1 0 0 0 0-1.72L6.5 2.64A1 1 0 0 0 5 3.5Z" fill="currentColor"
+              ></path></svg
+            >
+            <span><small>Get it on</small>Google Play</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot wrap">
+      <span>© {new Date().getFullYear()} {app.name} · made by <a href="/">Atul Patare</a></span>
+      <nav>
+        <a href={privacyUrl}>Privacy policy</a>
+        <a href="/projects">More apps</a>
+      </nav>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body-font); line-height: 1.6; overflow-x: hidden; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--head-font); line-height: 1.1; margin: 0; }
+  p { margin: 0; }
+
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  .bg-motif { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+
+  /* nav */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--head-font); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+  .brand-icon { border-radius: 10px; }
+  .nav nav { display: flex; align-items: center; gap: 20px; font-size: 0.95rem; }
+  .nav nav a:not(.btn) { text-decoration: none; opacity: 0.75; }
+  .nav nav a:not(.btn):hover { opacity: 1; }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: var(--btn-radius); background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px var(--accent); }
+  .btn-sm { padding: 8px 16px; font-size: .9rem; }
+  .btn-play span { display: flex; flex-direction: column; line-height: 1.1; font-size: 1.1rem; text-align: left; }
+  .btn-play small { font-size: .68rem; font-weight: 400; opacity: .85; text-transform: uppercase; letter-spacing: .06em; }
+  .btn-ghost { background: transparent; color: var(--fg); border: 1.5px solid var(--line-strong); }
+  .btn-ghost:hover { box-shadow: none; border-color: var(--accent); }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; padding: 56px 0 72px; }
+  .eyebrow { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); letter-spacing: var(--h1-track, -0.03em); }
+  .lede { font-size: 1.15rem; margin-top: 20px; color: var(--muted); max-width: 34em; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .badges { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .badges li { font-size: .85rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--muted); }
+  .hero-art { display: flex; justify-content: center; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 88px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-n { flex: none; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent-text); font-weight: 700; font-family: var(--head-font); }
+  .step h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .step p { color: var(--muted); font-size: .95rem; }
+
+  /* features */
+  .section-title { font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.02em; margin-bottom: 28px; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 96px; }
+  .feature { padding: 26px; }
+  .f-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); font-size: 1.3rem; margin-bottom: 16px; }
+  .feature h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .feature p { color: var(--muted); font-size: .97rem; }
+
+  /* screenshots */
+  .shots { display: flex; gap: 24px; overflow-x: auto; padding: 8px max(16px, calc((100% - 1120px) / 2)) 32px; scroll-snap-type: x mandatory; margin-bottom: 72px; scrollbar-width: thin; }
+  .shot { flex: none; margin: 0; scroll-snap-align: center; width: 240px; }
+  .shots-framed .frame { border-radius: 30px; padding: 8px; background: var(--frame); box-shadow: 0 24px 48px -24px rgba(0,0,0,.45); }
+  .shots-framed .frame img { border-radius: 23px; }
+  .shots-poster .shot { width: 250px; }
+  .shots-poster .frame img { border-radius: 18px; box-shadow: 0 24px 48px -24px rgba(0,0,0,.5); }
+  .shot figcaption { text-align: center; margin-top: 14px; font-size: .9rem; color: var(--muted); }
+
+  /* faq */
+  .faq { max-width: 760px; margin-bottom: 96px; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 1.08rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::after { content: "+"; color: var(--accent-text); font-size: 1.4rem; line-height: 1; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p { color: var(--muted); margin-top: 10px; }
+
+  /* cta */
+  .cta { text-align: center; padding: 56px 24px; margin-bottom: 64px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: var(--cta-bg, var(--card)); }
+  .cta-icon { border-radius: 18px; margin-bottom: 8px; }
+  .cta h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  .cta p { color: var(--muted); margin-bottom: 12px; }
+
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 24px 0 40px; border-top: 1px solid var(--line); font-size: .9rem; color: var(--muted); }
+  .foot nav { display: flex; gap: 20px; }
+
+  /* shared hero widgets */
+  .poster-stack { position: relative; width: 340px; height: 560px; }
+  .poster-stack img { position: absolute; border-radius: 22px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.55); }
+  .p-back { width: 240px; right: 0; top: 0; transform: rotate(7deg); filter: brightness(.8); }
+  .p-front { width: 260px; left: 0; bottom: 0; transform: rotate(-4deg); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 24px; gap: 40px; }
+    .features, .steps { grid-template-columns: 1fr; }
+    .nav nav a:not(.btn) { display: none; }
+    .poster-stack { width: 290px; height: 480px; }
+    .p-back { width: 200px; }
+    .p-front { width: 220px; }
+  }
+  @media (min-width: 861px) and (max-width: 1040px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+  /* ───────── Squeeze: dark, technical, mint ───────── */
+  .t-squeeze {
+    --bg: #04130e; --fg: #e8f6ef; --muted: #9db8ab; --card: #0a1f18; --line: #16332a; --line-strong: #24493c;
+    --accent: #5ee0b0; --on-accent: #032419; --accent-soft: rgba(94,224,176,.12); --accent-text: #5ee0b0;
+    --frame: #0f2a21; --radius: 20px; --btn-radius: 14px;
+    --head-font: "Space Grotesk", system-ui, sans-serif; --body-font: "Space Grotesk", system-ui, sans-serif;
+  }
+  .t-squeeze .bg-motif {
+    background:
+      radial-gradient(60% 50% at 85% 10%, rgba(0,107,83,.45), transparent 70%),
+      radial-gradient(40% 40% at 0% 60%, rgba(94,224,176,.08), transparent 70%),
+      linear-gradient(rgba(94,224,176,.05) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(90deg, rgba(94,224,176,.05) 1px, transparent 1px) 0 0 / 48px 48px;
+    mask-image: linear-gradient(#000 0 60%, transparent);
+  }
+  .t-squeeze .hero h1 { background: linear-gradient(120deg, #fff 30%, #5ee0b0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .meter { width: min(440px, 100%); padding: 28px; box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(94,224,176,.08); }
+  .meter-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: .9rem; color: var(--muted); margin-bottom: 24px; }
+  .meter-head span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .saving { font-size: 2.6rem; color: var(--accent); font-weight: 700; letter-spacing: -0.03em; }
+  .bar-row { display: grid; grid-template-columns: 56px 1fr 64px; align-items: center; gap: 12px; margin-bottom: 14px; font-size: .9rem; }
+  .bar-row b { text-align: right; }
+  .bar { height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: inherit; background: #557a6c; }
+  .bar.after i { background: var(--accent); animation: squeeze 1.6s cubic-bezier(.6,0,.2,1) .3s both; }
+  @keyframes squeeze { from { width: 100%; } }
+  .meter-foot { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line-strong); color: var(--accent); font-size: .9rem; }
+
+  /* ───────── FormFit: paper form, blue ink ───────── */
+  .t-formfit {
+    --bg: #f7f8fc; --fg: #0f1733; --muted: #4f5877; --card: #fff; --line: #e1e5f2; --line-strong: #c9d0e8;
+    --accent: #2f54eb; --on-accent: #fff; --accent-soft: #e8edff; --accent-text: #2f54eb;
+    --frame: #1b2140; --radius: 16px; --btn-radius: 12px;
+    --head-font: "Plus Jakarta Sans", system-ui, sans-serif; --body-font: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  .t-formfit h1, .t-formfit h2 { font-weight: 800; }
+  .t-formfit .bg-motif {
+    background:
+      radial-gradient(50% 40% at 90% 0%, rgba(47,84,235,.12), transparent 70%),
+      repeating-linear-gradient(transparent 0 31px, rgba(47,84,235,.07) 31px 32px);
+  }
+  .t-formfit .hero h1 { position: relative; }
+  .form-mock { width: min(440px, 100%); padding: 28px; box-shadow: 0 30px 60px -30px rgba(15,23,51,.35); }
+  .form-title { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-bottom: 14px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .form-mock label { display: block; font-weight: 600; font-size: .92rem; margin-bottom: 8px; }
+  .field { border: 1.5px solid; border-radius: 10px; padding: 12px 14px; font-size: .9rem; display: flex; flex-direction: column; gap: 4px; }
+  .field em { font-style: normal; font-size: .82rem; font-weight: 600; }
+  .field.bad { border-color: #f1a7a7; background: #fff5f5; } .field.bad em { color: #c62828; }
+  .field.good { border-color: #9ad7b0; background: #f2fbf5; } .field.good em { color: #1b7f43; }
+  .arrow { text-align: center; color: var(--accent); font-weight: 600; font-size: .9rem; margin: 14px 0; }
+  .sig { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; margin-bottom: 96px; }
+  .sig p { color: var(--muted); font-size: 1.05rem; margin-top: -12px; }
+  .sig-pair { display: flex; align-items: center; gap: 16px; }
+  .sig-pair figure { margin: 0; flex: 1; }
+  .sig-pair img { border-radius: 12px; border: 1px solid var(--line); background: #fff; aspect-ratio: 2 / 1; object-fit: cover; width: 100%; }
+  .sig-pair figcaption { font-size: .82rem; color: var(--muted); margin-top: 8px; text-align: center; }
+  .sig-arrow { font-size: 1.6rem; color: var(--accent); }
+  .t-formfit .cta { --cta-bg: linear-gradient(135deg, #e8edff, #fff); }
+  @media (max-width: 860px) { .sig { grid-template-columns: 1fr; } }
+
+  /* ───────── MangaD: ink black, halftone, hot red ───────── */
+  .t-mangad {
+    --bg: #0c0b0d; --fg: #f6f2ee; --muted: #b3aaa5; --card: #17151a; --line: #2a262d; --line-strong: #3d3741;
+    --accent: #ff3d5a; --on-accent: #fff; --accent-soft: rgba(255,61,90,.14); --accent-text: #ff6b81;
+    --frame: #222; --radius: 8px; --btn-radius: 6px; --h1-track: -0.04em;
+    --head-font: "Bricolage Grotesque", system-ui, sans-serif; --body-font: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+  .t-mangad h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(2.6rem, 6.5vw, 5rem) !important; line-height: .95; }
+  .t-mangad h2, .t-mangad h3 { font-weight: 800; }
+  .t-mangad .bg-motif {
+    background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.09) 1.2px, transparent 1.6px) 0 0 / 14px 14px,
+      radial-gradient(50% 50% at 90% 20%, rgba(255,61,90,.28), transparent 70%);
+    mask-image: radial-gradient(80% 70% at 80% 20%, #000, transparent);
+  }
+  .t-mangad .card { border: 2px solid var(--line-strong); box-shadow: 5px 5px 0 #000; }
+  .t-mangad .feature:hover { border-color: var(--accent); }
+  .t-mangad .btn { box-shadow: 4px 4px 0 #fff; }
+  .t-mangad .btn:hover { box-shadow: 6px 6px 0 #fff; }
+  .t-mangad .btn-ghost { box-shadow: none; }
+  .bubble { position: absolute; top: 30%; left: -18px; background: #fff; color: #0c0b0d; font-family: var(--head-font); font-weight: 800; padding: 10px 18px; border-radius: 22px; border: 3px solid #0c0b0d; transform: rotate(-8deg); box-shadow: 4px 4px 0 var(--accent); }
+  .bubble::after { content: ""; position: absolute; right: 26px; bottom: -14px; border: 8px solid transparent; border-top: 10px solid #fff; }
+  .t-mangad .cta { --cta-bg: linear-gradient(135deg, #2a0f15, #17151a); }
+
+  /* ───────── Ranobe: warm paper, serif, plum ───────── */
+  .t-ranobe {
+    --bg: #f6f0e6; --fg: #2b2118; --muted: #6d5f52; --card: #fffaf2; --line: #e6dccb; --line-strong: #d4c6ae;
+    --accent: #6b3fa0; --on-accent: #fff; --accent-soft: #efe5f8; --accent-text: #6b3fa0;
+    --frame: #2b2118; --radius: 14px; --btn-radius: 999px; --h1-track: -0.02em;
+    --head-font: "Fraunces", Georgia, serif; --body-font: "Lora", Georgia, serif;
+  }
+  .t-ranobe h1, .t-ranobe h2, .t-ranobe h3 { font-weight: 600; }
+  .t-ranobe .hero h1 { font-style: italic; }
+  .t-ranobe .bg-motif {
+    background:
+      radial-gradient(45% 40% at 85% 15%, rgba(107,63,160,.14), transparent 70%),
+      radial-gradient(35% 35% at 5% 90%, rgba(196,140,80,.14), transparent 70%);
+  }
+  .t-ranobe .eyebrow { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  .t-ranobe .lede::first-letter { font-family: var(--head-font); font-size: 3.2em; float: left; line-height: .85; margin: 6px 10px 0 0; color: var(--accent); }
+  .t-ranobe .btn, .t-ranobe .badges, .t-ranobe .nav nav { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  .t-ranobe .feature { box-shadow: 0 1px 0 var(--line); }
+  .t-ranobe .cta { --cta-bg: linear-gradient(135deg, #efe5f8, #fffaf2); }
+</style>

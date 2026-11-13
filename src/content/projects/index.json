@@ -140,6 +140,10 @@
     "date": "2026-11-14",
     "links": [
       {
+        "title": "website",
+        "url": "https://atulpatare.in/squeeze"
+      },
+      {
         "title": "privacy policy",
         "url": "https://atulpatare.in/squeeze/privacy-policy"
       },
@@ -158,6 +162,10 @@
     "date": "2026-11-01",
     "links": [
       {
+        "title": "website",
+        "url": "https://atulpatare.in/formfit"
+      },
+      {
         "title": "privacy policy",
         "url": "https://atulpatare.in/formfit/privacy-policy"
       },
@@ -175,6 +183,10 @@
     "icon": "./assets/ranobem.png",
     "date": "2025-06-24",
     "links": [
+      {
+        "title": "website",
+        "url": "https://atulpatare.in/ranobem"
+      },
       {
         "title": "privacy policy",
         "url": "https://atulpatare.in/ranobem/privacy-policy"
@@ -211,6 +223,10 @@
     "draft": false,
     "icon": "./assets/ranobe.png",
     "links": [
+      {
+        "title": "website",
+        "url": "https://atulpatare.in/ranobe"
+      },
       {
         "title": "privacy policy",
         "url": "https://atulpatare.in/ranobe/privacy-policy"
