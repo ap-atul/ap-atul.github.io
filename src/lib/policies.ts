@@ -3,6 +3,8 @@ export type Section = { heading: string; items: string[] };
 export type Policy = {
   slug: string;
   name: string;
+  /** Overrides the page-wide "Last updated" date. */
+  updated?: string;
   intro: string;
   summary: string[];
   sections: Section[];
@@ -18,6 +20,44 @@ const LOCAL_SETTINGS = {
 };
 
 export const policies: Policy[] = [
+  {
+    slug: "squeeze",
+    name: "Squeeze",
+    updated: "14 November 2026",
+    intro: "Squeeze is a video compressor that shrinks the videos on your phone to free up storage.",
+    summary: [
+      "No personal data is collected. Your videos never leave your device.",
+      "No ads. " + NO_TRACKING,
+      OFFLINE,
+    ],
+    sections: [
+      {
+        heading: "Your videos",
+        items: [
+          "Squeeze reads the list of videos on your device (name, size, length and resolution) to show how much storage they use and to let you pick the ones to compress.",
+          "Compression happens entirely on your device using its built-in video encoder. Videos are never uploaded, copied to a server or shared with anyone.",
+          "Compressed copies are saved to the Movies/Squeeze folder on your device. Temporary files used while compressing are kept in the app's private cache and deleted as soon as each video is saved.",
+          "Original videos are deleted only when you choose to, and Android asks you to confirm before anything is removed.",
+        ],
+      },
+      {
+        heading: "Permissions",
+        items: [
+          "Videos (photos and videos access, or storage on older Android versions): to list your videos, save compressed copies and delete originals when you ask.",
+          "Notifications: to show compression progress and when a batch is finished.",
+          "Foreground service and wake lock: to keep compressing while you use other apps or the screen is off. Compression stops when the batch finishes or you tap Cancel.",
+        ],
+      },
+      LOCAL_SETTINGS,
+      {
+        heading: "Data sharing & deletion",
+        items: [
+          "No data is shared with third parties because no data is collected.",
+          "Uninstalling the app removes its settings and cache. Compressed videos in Movies/Squeeze are your files and stay until you delete them.",
+        ],
+      },
+    ],
+  },
   {
     slug: "ranobe",
     name: "Ranobe",

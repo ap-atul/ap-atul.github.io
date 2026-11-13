@@ -132,6 +132,24 @@
     ]
   },
   {
+    "slug": "squeeze",
+    "title": "Squeeze - Video Compressor",
+    "description": "Compress videos up to 80% smaller and free up phone storage. Batch, HEVC, fully offline.",
+    "draft": false,
+    "icon": "./assets/squeeze.webp",
+    "date": "2026-11-14",
+    "links": [
+      {
+        "title": "privacy policy",
+        "url": "https://atulpatare.in/squeeze/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.video"
+      }
+    ]
+  },
+  {
     "slug": "formfit",
     "title": "FormFit",
     "description": "Offline photo & signature resizer for exam and government forms.",
