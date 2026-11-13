@@ -1,0 +1,60 @@
+---
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { policies, type Policy } from "../../lib/policies";
+
+export function getStaticPaths() {
+  return policies.map((p) => ({ params: { app: p.slug }, props: { policy: p } }));
+}
+
+const { policy } = Astro.props as { policy: Policy };
+const UPDATED = "13 November 2026";
+const EMAIL = "atulpatare99@gmail.com";
+---
+
+<PageLayout
+  title={`${policy.name} Privacy Policy`}
+  description={`Privacy policy for ${policy.name}.`}
+>
+  <Container>
+    <div class="animate text-center mt-10 mb-10">
+      <div class="text-4xl font-semibold text-black dark:text-white">
+        {policy.name} Privacy Policy
+      </div>
+      <div class="mt-3 text-xs text-muted-foreground">Last updated: {UPDATED}</div>
+    </div>
+
+    <article class="animate">
+      <p>
+        {policy.intro} It is developed by <strong>Atul Patare</strong>. This policy explains how the
+        app handles your information.
+      </p>
+
+      <h2>Summary</h2>
+      <ul>{policy.summary.map((s) => <li>{s}</li>)}</ul>
+
+      {
+        policy.sections.map((s) => (
+          <>
+            <h2>{s.heading}</h2>
+            <ul>{s.items.map((i) => <li>{i}</li>)}</ul>
+          </>
+        ))
+      }
+
+      <h2>Children</h2>
+      <p>The developer does not knowingly collect any information from children under 13.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If this policy changes, the updated version will be published at this same address with a
+        new "Last updated" date.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions or concerns about this policy: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      </p>
+    </article>
+  </Container>
+</PageLayout>

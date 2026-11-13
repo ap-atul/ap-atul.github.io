@@ -9,8 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [...defaultTheme.fontFamily.mono],
-        serif: [...defaultTheme.fontFamily.mono],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        serif: ["Lora", ...defaultTheme.fontFamily.serif],
+        mono: [...defaultTheme.fontFamily.mono],
       },
       colors: {
         primary: {

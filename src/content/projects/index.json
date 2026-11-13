@@ -1,7 +1,157 @@
 [
   {
+    "slug": "pottery-circle",
+    "title": "Pottery Circle",
+    "description": "A simple, fun casual game.",
+    "draft": false,
+    "icon": "./assets/potterycircle.png",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://potterycircle.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://potterycircle.atulpatare.in/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=app.atulpatare.potterycircle"
+      }
+    ]
+  },
+  {
+    "slug": "puzzle-arcade",
+    "title": "Puzzle Arcade",
+    "description": "A collection of small puzzle games.",
+    "draft": false,
+    "icon": "./assets/arcade.png",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://arcade.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://arcade.atulpatare.in/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.puzzlearcade"
+      }
+    ]
+  },
+  {
+    "slug": "largo",
+    "title": "Largo",
+    "description": "A simple, big-button Android launcher for senior citizens.",
+    "draft": false,
+    "icon": "./assets/largo.png",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://largo.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://largo.atulpatare.in/privacy-policy/"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.largo"
+      }
+    ]
+  },
+  {
+    "slug": "nimi",
+    "title": "Nimi",
+    "description": "An Android alarm clock with a twist.",
+    "draft": false,
+    "icon": "./assets/nimi.png",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://nimi.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://nimi.atulpatare.in/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.nimi"
+      }
+    ]
+  },
+  {
+    "slug": "kiri",
+    "title": "Kiri",
+    "description": "Track the manga and web novels you follow.",
+    "draft": false,
+    "icon": "./assets/kiri.webp",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://kiri.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://kiri.atulpatare.in/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.kiri"
+      }
+    ]
+  },
+  {
+    "slug": "cleanswipe",
+    "title": "Clean Swipe",
+    "description": "Swipe through your files to clean up storage on Android.",
+    "draft": false,
+    "icon": "./assets/cleanswipe.png",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "website",
+        "url": "https://cleanswipe.atulpatare.in"
+      },
+      {
+        "title": "privacy policy",
+        "url": "https://cleanswipe.atulpatare.in/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.cleanswipe"
+      }
+    ]
+  },
+  {
+    "slug": "formfit",
+    "title": "FormFit",
+    "description": "Offline photo & signature resizer for exam and government forms.",
+    "draft": false,
+    "icon": "./assets/formfit.webp",
+    "date": "2026-11-01",
+    "links": [
+      {
+        "title": "privacy policy",
+        "url": "https://atulpatare.in/formfit/privacy-policy"
+      },
+      {
+        "title": "play store",
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.compress"
+      }
+    ]
+  },
+  {
     "slug": "ranobem",
-    "title": "RanobeM - Manga reader & downloader",
+    "title": "MangaD - Manga reader & downloader",
     "description": "Read and download manga from popular sources right to your Android device.",
     "draft": false,
     "icon": "./assets/ranobem.png",
@@ -9,11 +159,11 @@
     "links": [
       {
         "title": "privacy policy",
-        "url": "https://atulpatare.in/ranobem/PRIVACY_POLICY.md"
+        "url": "https://atulpatare.in/ranobem/privacy-policy"
       },
       {
         "title": "play store",
-        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.ranobem"
+        "url": "https://play.google.com/store/apps/details?id=in.atulpatare.ranobem.pro"
       }
     ]
   },
@@ -43,6 +193,10 @@
     "draft": false,
     "icon": "./assets/ranobe.png",
     "links": [
+      {
+        "title": "privacy policy",
+        "url": "https://atulpatare.in/ranobe/privacy-policy"
+      },
       {
         "title": "github",
         "url": "https://github.com/ranobe-org/ranobe"

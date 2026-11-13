@@ -43,32 +43,39 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply bg-white dark:bg-black;
-  @apply text-black/50 dark:text-white;
+  @apply bg-stone-50 dark:bg-neutral-950;
+  @apply text-neutral-600 dark:text-neutral-400;
+  @apply selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-black;
+  font-feature-settings: "cv11", "ss01";
 }
 
 p {
-  @apply text-sm;
+  @apply text-[15px] leading-relaxed;
+}
+
+h1, h2, h3, h4 {
+  @apply tracking-tight text-neutral-900 dark:text-neutral-100;
 }
 
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-4;
-  @apply bg-stone-100/75 dark:bg-stone-900/25;
-  @apply backdrop-blur-sm saturate-200;
-  @apply shadow-md dark:shadow-black/50;
+  @apply bg-stone-50/80 dark:bg-neutral-950/80;
+  @apply backdrop-blur-md;
+  @apply border-b border-black/5 dark:border-white/10;
 }
 
 main {
-  @apply flex-1 py-20;
+  @apply flex-1 pt-28 pb-20;
 }
 
 footer {
-  @apply py-5 text-sm;
+  @apply py-8 text-sm border-t border-black/5 dark:border-white/10;
 }
 
 article {
   @apply max-w-full prose dark:prose-invert prose-img:mx-auto prose-img:my-auto;
-  @apply prose-headings:font-semibold prose-p:font-serif;
+  @apply prose-headings:font-semibold prose-headings:tracking-tight prose-p:font-serif prose-p:text-[17px] prose-p:leading-8 prose-li:font-serif;
+  @apply prose-code:font-mono prose-pre:rounded-lg;
   @apply prose-headings:text-black prose-headings:dark:text-white;
 }
 
